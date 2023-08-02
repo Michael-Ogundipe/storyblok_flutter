@@ -49,7 +49,7 @@ class Story {
   int position;
   List<dynamic> tagList;
   bool isStartpage;
-  dynamic parentId;
+  int parentId;
   dynamic metaData;
   String groupId;
   DateTime firstPublishedAt;
@@ -73,7 +73,7 @@ class Story {
     required this.position,
     required this.tagList,
     required this.isStartpage,
-    this.parentId,
+    required this.parentId,
     this.metaData,
     required this.groupId,
     required this.firstPublishedAt,
@@ -138,32 +138,114 @@ class Story {
 
 class Content {
   String uid;
-  String about;
-  String title;
+  String body;
   String component;
-  String creationTime;
+  HeaderImage headerImage;
+  String majorDiscovery;
+  String headerDescription;
+  String scienctistProfile;
+  String profileDescription;
+  String discoveryDescription;
 
   Content({
     required this.uid,
-    required this.about,
-    required this.title,
+    required this.body,
     required this.component,
-    required this.creationTime,
+    required this.headerImage,
+    required this.majorDiscovery,
+    required this.headerDescription,
+    required this.scienctistProfile,
+    required this.profileDescription,
+    required this.discoveryDescription,
   });
 
   factory Content.fromJson(Map<String, dynamic> json) => Content(
     uid: json["_uid"],
-    about: json["About"],
-    title: json["Title"],
+    body: json["body"],
     component: json["component"],
-    creationTime: json["creation_time"],
+    headerImage: HeaderImage.fromJson(json["headerImage"]),
+    majorDiscovery: json["majorDiscovery"],
+    headerDescription: json["headerDescription"],
+    scienctistProfile: json["scienctistProfile"],
+    profileDescription: json["profileDescription"],
+    discoveryDescription: json["discoveryDescription"],
   );
 
   Map<String, dynamic> toJson() => {
     "_uid": uid,
-    "About": about,
-    "Title": title,
+    "body": body,
     "component": component,
-    "creation_time": creationTime,
+    "headerImage": headerImage.toJson(),
+    "majorDiscovery": majorDiscovery,
+    "headerDescription": headerDescription,
+    "scienctistProfile": scienctistProfile,
+    "profileDescription": profileDescription,
+    "discoveryDescription": discoveryDescription,
+  };
+}
+
+class HeaderImage {
+  int id;
+  String alt;
+  String name;
+  String focus;
+  String title;
+  String source;
+  String filename;
+  String copyright;
+  String fieldtype;
+  MetaData metaData;
+  bool isExternalUrl;
+
+  HeaderImage({
+    required this.id,
+    required this.alt,
+    required this.name,
+    required this.focus,
+    required this.title,
+    required this.source,
+    required this.filename,
+    required this.copyright,
+    required this.fieldtype,
+    required this.metaData,
+    required this.isExternalUrl,
+  });
+
+  factory HeaderImage.fromJson(Map<String, dynamic> json) => HeaderImage(
+    id: json["id"],
+    alt: json["alt"],
+    name: json["name"],
+    focus: json["focus"],
+    title: json["title"],
+    source: json["source"],
+    filename: json["filename"],
+    copyright: json["copyright"],
+    fieldtype: json["fieldtype"],
+    metaData: MetaData.fromJson(json["meta_data"]),
+    isExternalUrl: json["is_external_url"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "alt": alt,
+    "name": name,
+    "focus": focus,
+    "title": title,
+    "source": source,
+    "filename": filename,
+    "copyright": copyright,
+    "fieldtype": fieldtype,
+    "meta_data": metaData.toJson(),
+    "is_external_url": isExternalUrl,
+  };
+}
+
+class MetaData {
+  MetaData();
+
+  factory MetaData.fromJson(Map<String, dynamic> json) => MetaData(
+  );
+
+  Map<String, dynamic> toJson() => {
   };
 }

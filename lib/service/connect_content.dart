@@ -8,12 +8,10 @@ import 'package:storyblok_flutter/model/content.dart';
 class ConnectContent {
   Future<Storyblok> content() async {
     try {
-      const cv = 1689914137;
-      const token = 'qLkKDJHZAeWnrjQmNUrI7gtt';
-      const version = 'published';
+      const token = 'HGzq6WMtmO3HbXoEBvlHHwtt';
 
       const String apiUrl =
-          "https://api.storyblok.com/v2/cdn/stories/header-text?cv=$cv&token=$token&version=$version";
+          "https://api.storyblok.com/v2/cdn/stories/science-genius?&token=$token";
 
       Map<String, String> headers = {
         'Authorization': 'Bearer $token',

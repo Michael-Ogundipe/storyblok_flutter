@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
         future: ConnectContent().content(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            final content = snapshot.data!;
+            final story = snapshot.data!.story.content;
             return Scaffold(
               appBar: AppBar(
                 title: Text('Science Genius',
@@ -33,28 +33,27 @@ class _HomePageState extends State<HomePage> {
                       width: 450,
                       height: 200,
                       decoration: BoxDecoration(
-                        image: const DecorationImage(
-                          image: NetworkImage(
-                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfeCiZwoJs9hxlm4lQMkyFyPFuEekbAMMLEQ&usqp=CAU'),
+                        image: DecorationImage(
+                          image: NetworkImage(story.headerImage.filename),
                           fit: BoxFit.cover,
                         ),
                         borderRadius: BorderRadius.circular(16),
                       ),
-                      child: const Text(
-                        'An educational mobile app that celebrates the brilliance of renowned scientists and their groundbreaking discoveries. ',
-                        style: TextStyle(color: Colors.white),
+                      child: Text(
+                        story.headerDescription,
+                        style: const TextStyle(color: Colors.white),
                       ),
                     ),
                     const SizedBox(height: 20),
-                    const Section(
-                        title: 'Scientist Profiles',
-                        description:
-                            'Delve into the lives of eminent scientists from various fields, including physics, chemistry, biology, and more. Each scientist profile provides a captivating biography, along with a portrait that brings their image to life.'),
+                    Section(
+                      title: story.scienctistProfile,
+                      description: story.profileDescription,
+                    ),
                     const SizedBox(height: 20),
-                    const Section(
-                        title: 'Major Discoveries',
-                        description:
-                            'Uncover the most significant scientific contributions of each scientist. The app highlights their major discoveries, theories, and advancements that revolutionized our understanding of the natural world.'),
+                    Section(
+                      title: story.majorDiscovery,
+                      description: story.discoveryDescription,
+                    ),
                   ],
                 ),
               ),
